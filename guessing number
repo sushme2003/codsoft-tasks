@@ -1,1 +1,53 @@
+import java.util.Random;
+import java.util.Scanner;
 
+public class Numbergame {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+        int min = 1;
+        int max = 100;
+        int maxAttempts = 5;
+        int score = 0;
+
+        System.out.println("Welcome to the Number Guessing Game!");
+
+        int play = 1;
+        while (play==1) {
+            int randomNumber = random.nextInt(max - min + 1) + min;
+            int attempts = 1;
+            int correctguess = 0;
+
+            System.out.println("\nrandom number is genrated between min and max , Guess it!");
+
+            while (attempts <= maxAttempts) {
+                System.out.print("Attempt " + (attempts )  + ": Enter your guess: ");
+                int Guess = sc.nextInt();
+
+                if (Guess == randomNumber) {
+                    System.out.println("Congratulations! You've guessed the number (" + randomNumber + ") correctly!");
+                    correctguess = 1;
+                    score = attempts + 1; 
+                    break;
+                } else if (Guess < randomNumber) {
+                    System.out.println("Too low! Try again.");
+                } else {
+                    System.out.println("Too high! Try again.");
+                }
+                attempts++;
+            }
+
+            if (correctguess==0) {
+                System.out.println("Sorry, you're attempts are over. The correct number was: " + randomNumber);
+            }
+
+            System.out.println("Your score: " + score);
+            System.out.print("Do you want to play again? (yes=1/no=0): ");
+             play= sc.nextInt();
+            
+        }
+
+        System.out.println("Thanks for playing!");
+        sc.close();
+    }
+}
